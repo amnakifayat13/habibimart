@@ -53,7 +53,7 @@ export default async function ProductDetails({params}:{params:{id:string}}){
                         SKU: {Math.random() * 500}
                     </p>
                     {/* add to cart */}
-                    <AddToCart/>
+                    <AddToCart product = {singleProduct}/>
 
             </div>
             </div>
