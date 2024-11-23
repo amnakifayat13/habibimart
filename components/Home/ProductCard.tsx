@@ -4,9 +4,8 @@ import { Product } from "../../typing"
 import Image from "next/image"
 import { Heart, ShoppingBag, StarIcon } from "lucide-react"
 import { Button } from "../ui/button"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch} from "react-redux"
 import { addItem } from "@/store/cartSlice"
-import { RootState } from "@/store/store"
 import { useToast } from "@/hooks/use-toast"
 
 type Props = {
@@ -47,7 +46,7 @@ export default function ProductCard({product}:Props){
                     </Link>
                     {/* rating */}
                     <div className="flex items-center">
-                        {ratingArray.map((star)=>{
+                        {ratingArray.map(()=>{
                             return <StarIcon key={Math.random()*1000} size={16} fill="yellow" 
                             className="text-yellow-500"/>
 
@@ -61,13 +60,13 @@ export default function ProductCard({product}:Props){
                     </div>
                     {/* Buttons */}
                     <div className="mt-4 flex items-center space-x-2">
-                        <Button size={"icon"} className="bg-slate-950 text-white" 
+                        <Button size={"icon"} variant={"destructive"} 
                         onClick={()=>{
                             addToCartHandler(product)
                         }}>
-                            <ShoppingBag size={18}/>
+                            <ShoppingBag size={18} />
                             </Button>
-                        <Button size={"icon"} className="bg-red-500">
+                        <Button size={"icon"}>
                         <Heart size={18} />
                         </Button>
 

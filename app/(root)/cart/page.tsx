@@ -1,13 +1,14 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { addItem, CartItem, removeItem } from "@/store/cartSlice"
 import { RootState } from "@/store/store"
 import Image from "next/image"
 import Link from "next/link"
-import { describe } from "node:test"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 export default function Cart (){
+    const dispatch = useDispatch();
 
     // get our cart items
     const items = useSelector((state:RootState) => state.cart.items)
@@ -25,6 +26,19 @@ export default function Cart (){
     // total price with vat
     const totalPriceWithVat = (+totalPrice + +vat).toFixed(2)
 
+    // get authenticate user
+
+   
+    // add item
+    const addItemHandler = (item:CartItem) => {
+        dispatch(addItem(item))
+    }
+
+    // rempve item
+    const removeItemHandler = (id:number) => {
+        dispatch(removeItem({id}))
+    }
+
     return(
         <div className="mt-8 min-h-[60vh]">
             {/* if the card is empty */}
@@ -34,8 +48,9 @@ export default function Cart (){
                     <Image src="/images/cart.png" alt="Emptycart" width={200} height={200}
                     className="object-cover mx-auto"/>
                     <h1 className="mt-8 text-2xl font-semibold">Your Cart is empty</h1>
-                    <Link href="/"></Link>
+                    <Link href="/">
                     <Button> Shop Now</Button>
+                    </Link>
 
                 </div>
             )}
@@ -60,8 +75,10 @@ export default function Cart (){
                                                 <h1 className="md:text-2xl text-lg font-bold text-blue-950">${item.price}</h1>
                                                 <h1 className="md:text-lg text-sm font-semibold">Quantity: {item.quantity}</h1>
                                                 <div className="flex items-center mt-4 space-x-2">
-                                                    <Button>Add More</Button>
-                                                    <Button variant={"destructive"}>Remove</Button>
+                                                    <Button onClick={()=>{addItemHandler(item)}} variant={"destructive"}
+                                                    >Add More</Button>
+                                                    <Button onClick={() => {removeItemHandler(item.id)}} variant={"default"}
+                                                    >Remove</Button>
                                                 </div>
                                             </div>
                                         </div>
@@ -97,6 +114,7 @@ export default function Cart (){
                                 <span>Total</span>
                                 <span>${totalPriceWithVat}</span>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

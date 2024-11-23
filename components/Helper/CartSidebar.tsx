@@ -45,7 +45,7 @@ export default function CartSideBar({items}: Props){
                                     {/* add and remove button */}
                                     <div className="flex items-center space-x-4">
                                         <Button onClick ={()=>{removeCartHandler(item.id)}} size={"sm"} variant={"destructive"} className="bg-red-600">Remove</Button>
-                                        <Button onClick ={()=>{addCartHandler(item)}}size={"sm"} className="bg-slate-950 text-white ">Add</Button>
+                                        <Button onClick ={()=>{addCartHandler(item)}}size={"sm"}  variant={"destructive"}>Add</Button>
                                     </div>
                             </div>
                             </div>
@@ -53,7 +53,7 @@ export default function CartSideBar({items}: Props){
                     })}
                     <Link href="/cart">
                     <SheetClose>
-                    <Button className="mt-6 mb-6 w-full">View All Cart</Button>
+                    <Button className="mt-6 mb-6 w-full" variant={"destructive"}>View All Cart</Button>
                     </SheetClose>
                     </Link>
                 </div>

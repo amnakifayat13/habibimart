@@ -4,8 +4,8 @@ import Image from "next/image"
 import { StarIcon } from "lucide-react"
 import AddToCart from "./add.cart"
 import ProductCard from "@/components/Home/ProductCard"
-export default async function ProductDetails({params}:{params:{id:string}}){
-    const id = params.id
+export default async function ProductDetails({params}:{ params: Promise<{ id: string }> }){
+    const { id } = await params
     const singleProduct:Product = await getSingleProduct(id)
     const relatedProduct:Product[] = await getProductByCategory(singleProduct.category) ;
 
@@ -28,7 +28,7 @@ export default async function ProductDetails({params}:{params:{id:string}}){
                 </h1>
                 <div className="mt-2 flex items-center space-x-2">
                     <div className="flex items-center">
-                        {starArray.map((star)=>{
+                        {starArray.map(()=>{
                             return <StarIcon key={Math.random()*5000} size={20} fill="yellow"
                             className="text-yellow-600"/>
                         })}

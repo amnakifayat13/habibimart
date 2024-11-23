@@ -15,7 +15,7 @@ export default function Hero(){
             <p className="text-sm md:text-base lg:text-lg text-black text-opacity-70 mt-4 ">
                 Discover quality, style, and convenience – all in one click!</p>
                 <div className="flex mt-6 items-center space-x-4"></div>
-                <Button size={"lg"} className="bg-red-600">Shop Now</Button>
+                <Button size={"lg"} variant={"destructive"}>Shop Now</Button>
                 <Button size={"lg"} className="ml-2">Explore More</Button>
             </div>
             {/* image content */}
